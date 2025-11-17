@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri Delta Force</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: #0f0;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #0a0a0a;
+      padding: 25px;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px #00ff66;
+    }
+
+    h2 {
+      margin-top: 60px;
+      color: #00ff66;
+      text-shadow: 0 0 10px #00ff66;
+    }
+
+    .slider {
+      position: relative;
+      max-width: 900px;
+      margin: 30px auto;
+      overflow: hidden;
+      border: 3px solid #00ff66;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 100, 0.4);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.8s ease-in-out;
+      width: 100%;
+    }
+
+    .slides img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .nav button {
+      background: rgba(0, 255, 100, 0.3);
+      border: 2px solid #00ff66;
+      color: #fff;
+      font-size: 20px;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.8s;
+    }
+
+    .nav button:hover {
+      background: #00ff66;
+      color: #000;
+      box-shadow: 0 0 15px #00ff66;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 15px;
+      background: #0a0a0a;
+      color: #00ff66;
+      font-size: 14px;
+      box-shadow: 0 -2px 10px #00ff66;
+    }
+  </style>
+</head>
+<body>
+  <header>🪖 Galeri Delta Force</header>
+
+  <!-- ===== GAMEPLAY ===== -->
+  <h2>🎮 Gameplay</h2>
+  <div class="slider" id="slider1">
+    <div class="slides">
+      <img src="game1.jpg" alt="Gameplay 1">
+      <img src="galeri2.jpg" alt="Gameplay 2">
+      <img src="galeri3.jpg" alt="Gameplay 3">
+      <img src="galeri4.jpg" alt="Gameplay 4">
+      <img src="galeri1.jpg" alt="Gameplay 4">
+      <img src="galeri3.jpg" alt="Gameplay 4">
+      <img src="galeri4.jpg" alt="Gameplay 4">
+      <img src="galeri1.jpg" alt="Gameplay 4">
+      <img src="galeri2.jpg" alt="Gameplay 4">
+      <img src="galeri1.jpg" alt="Gameplay 1">
+      <img src="galeri2.jpg" alt="Gameplay 2">
+      <img src="galeri3.jpg" alt="Gameplay 3">
+    </div>
+    <div class="nav">
+      <button class="prev">⟨</button>
+      <button class="next">⟩</button>
+    </div>
+  </div>
+
+  <!-- ===== MAP ===== -->
+  <h2>🗺️ Map</h2>
+  <div class="slider" id="slider2">
+    <div class="slides">
+      <img src="map1.png" alt="Map 1">
+      <img src="map2.jpg" alt="Map 2">
+      <img src="map3.jpg" alt="Map 3">
+      <img src="map4.jpg" alt="Map 4">
+    </div>
+    <div class="nav">
+      <button class="prev">⟨</button>
+      <button class="next">⟩</button>
+    </div>
+  </div>
+
+  <!-- ===== SENJATA ===== -->
+  <h2>🔫 Senjata</h2>
+  <div class="slider" id="slider3">
+    <div class="slides">
+      <img src="senjata1.jpg" alt="Senjata 1">
+      <img src="senjata2.jpg" alt="Senjata 1">
+      <img src="senjata3.jpg" alt="Senjata 1">
+      <img src="senjata2.jpg" alt="Senjata 1">
+      <img src="senjata3.jpg" alt="Senjata 1">
+      <img src="senjata2.jpg" alt="Senjata 1">
+      <img src="senjata3.jpg" alt="Senjata 1">
+      <img src="senjata2.jpg" alt="Senjata 1">
+      <img src="senjata3.jpg" alt="Senjata 1">
+      
+    </div>
+    <div class="nav">
+      <button class="prev">⟨</button>
+      <button class="next">⟩</button>
+    </div>
+  </div>
+
+  <footer>&copy; 2025 Delta Force Gallery by Rafi</footer>
+
+  <script>
+    function createSlider(sliderId) {
+      const slider = document.querySelector(`#${sliderId}`);
+      const slides = slider.querySelector('.slides');
+      const images = slider.querySelectorAll('img');
+      const total = images.length;
+      let index = 0;
+
+      slider.querySelector('.next').addEventListener('click', () => {
+        index = (index + 1) % total;
+        update();
+      });
+
+      slider.querySelector('.prev').addEventListener('click', () => {
+        index = (index - 1 + total) % total;
+        update();
+      });
+
+      function update() {
+        slides.style.transform = `translateX(-${index * 100}%)`;
+      }
+
+      setInterval(() => {
+        index = (index + 1) % total;
+        update();
+      }, 4000);
+    }
+
+    createSlider('slider1');
+    createSlider('slider2');
+    createSlider('slider3');
+  </script>
+</body>
+</html>

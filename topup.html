@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delta Force - Top Up</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(180deg, #0a0a0a, #145223);
+  color: #0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Header */
+header {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 2px solid #0f0;
+  text-shadow: 0 0 10px #00ff66;
+}
+
+/* Form */
+.topup-box {
+  background: rgba(20, 20, 20, 0.9);
+  border: 2px solid #00ff99;
+  box-shadow: 0 0 20px #00ff66;
+  border-radius: 12px;
+  padding: 25px;
+  margin-top: 40px;
+  width: 300px;
+  text-align: center;
+}
+
+input, select {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #00ff99;
+  background: #111;
+  color: #0f0;
+  font-family: inherit;
+}
+
+button {
+  background: #00ff66;
+  color: #000;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #00cc55;
+}
+
+/* Notif */
+#notif {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f0;
+  color: #000;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  border: 2px solid #00ff99;
+  box-shadow: 0 0 15px #00ff66;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 9999;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1> Delta Force Top-Up Center </h1>
+  <p>Isi ulang saldo pertempuranmu sekarang!</p>
+</header>
+
+<div class="topup-box">
+  <h2>Formulir Top-Up</h2>
+  <input type="text" id="username" placeholder="Masukkan Username" required>
+  <select id="nominal">
+    <option value="">Pilih Nominal</option>
+    <option value="300">300 Delta coins 65k</option>
+    <option value="450">450 Delta coins 90k</option>
+    <option value="880">880 Delta coins 120k</option>
+    <option value="1.300">1.300 Delta coins 250k</option>
+  </select>
+  <select id="pembayaran">
+    <option value="">Metode Pembayaran</option>
+    <option value="Dana">Dana</option>
+    <option value="OVO">OVO</option>
+    <option value="Gopay">Gopay</option>
+    <option value="QRIS">QRIS</option>
+  </select>
+  <button onclick="kirimTopup()">Top-Up Sekarang</button>
+</div>
+
+<div id="notif">Transaksi berhasil!</div>
+
+<script>
+function kirimTopup() {
+  const nama = document.getElementById("username").value;
+  const nominal = document.getElementById("nominal").value;
+  const pembayaran = document.getElementById("pembayaran").value;
+  const notif = document.getElementById("notif");
+
+  if (!nama || !nominal || !pembayaran) {
+    notif.textContent = "⚠️ Lengkapi semua data!";
+  } else {
+    notif.textContent = `✅ Top-Up ${nominal} Delta coins Berhasil via ${pembayaran}`;
+  }
+
+  notif.style.opacity = "1";
+  setTimeout(() => {
+    notif.style.opacity = "0";
+  }, 3000);
+}
+</script>
+
+</body>
+</html>
