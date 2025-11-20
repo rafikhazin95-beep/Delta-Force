@@ -154,9 +154,33 @@
 </head>
 
 <body>
+    <!-- Logo Musik di Pojok Kiri Atas -->
+    <div id="">
+<div id="musicBtn" style="
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 50px;
+    height: 50px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid #00ffea;
+    z-index: 9999;
+">
+    <span style="font-size: 26px;">🎵</span>
+</div>
+
+<!-- Audio -->
+<audio id="bgm" src="musik//lagu.mp3" loop></audio>
+
     <div id="notif">⚡ Selamat Datang Di Website Saya</div>
 <div class="download-btn">
     <header class="fade-in">
+        <h1>Selamat Datang Di Website Saya</h1>
         <h1 id="greeting">Delta Force</h1>
         <p>Ketika dunia terbagi dan sejarah berubah selamanya</p>
         <img src="awal delta.webp" alt="Gambar Delta Force" width="500" height="400">
@@ -288,7 +312,15 @@ window.addEventListener("load", () => {
         }, 2000); // diam selama 2 detik
     }, 500); // muncul 0.5 detik setelah halaman mulai fade
 });
-         
+         const audio = document.getElementById("bgm");
+let started = false;
+
+document.getElementById("musicBtn").onclick = () => {
+    if (!started) {
+        audio.play();
+        started = true;
+    }
+};
     </script>
 
 </body>
