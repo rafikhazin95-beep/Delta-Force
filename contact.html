@@ -15,6 +15,25 @@ body {
     background-color: rgb(197, 197, 197);
     color: #333;
 }
+#notif {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0f0; /* hijau terang */
+    color: #000;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 17px;
+    text-align: center;
+    border: 2px solid #00ff99;
+    box-shadow: 0 0 25px #00ff66;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 9999;
+
+}
 
 /* Header & Nav */
 header {
@@ -174,9 +193,33 @@ ul {
         
     </head>
    <body>
+           <div id="musicBtn" style="
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 50px;
+    height: 50px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid #00ffea;
+    z-index: 9999;
+">
+    <span style="font-size: 26px;">🎵</span>
+</div>
+
+<!-- Audio -->
+<audio id="bgm" src="musik//lagu.mp3" loop></audio>
+
+    <div id="notif">⚡ Selamat Datang Di Menu About Saya</div>
+    
     <div class="download-btn">
     <header class="fade-in">
         <h1>Selamat Datang di Situs Saya</h1>
+        <h1 id="greeting">Delta Force</h1>
         <img src="deltasenjata.jpg" height="400" width="500">
         </header>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -264,8 +307,8 @@ ul {
     <main>
         <div class="hero">
   <h2>Kontak</h2>
-  <p>Email: support@deltaforce.co.id<br>
-     Telepon: +62 812 3456 7890</p>
+  <p>Email: rafikhazin95@gmail.com<br>
+     Telepon: +62 831 1955 8011</p>
         </div>
         </main>
     <footer>
@@ -298,6 +341,44 @@ ul {
                 }, i * 300); // muncul satu per satu
             });
         });
+                // Sinkron dengan animasi fade-in elemen
+window.addEventListener("load", () => {
+    const fadeElements = document.querySelectorAll(".fade-in");
+    fadeElements.forEach((el, i) => {
+        setTimeout(() => {
+            el.classList.add("show");
+        }, i * 300);
+    });
+
+    // Efek notif: fade-in → tampil 2 detik → fade-out
+    const notif = document.getElementById("notif");
+    setTimeout(() => {
+        notif.style.opacity = "1"; // Muncul pelan
+        setTimeout(() => {
+            notif.style.opacity = "0"; // Menghilang pelan
+        }, 2000); // diam selama 2 detik
+    }, 500); // muncul 0.5 detik setelah halaman mulai fade
+});
+         const audio = document.getElementById("bgm");
+let started = false;
+
+document.getElementById("musicBtn").onclick = () => {
+    if (!started) {
+        audio.play();
+        started = true;
+    }
+};
+        // ====== Ucapan dinamis ======
+        const greeting = document.getElementById('greeting');
+        const hours = new Date().getHours();
+        if (hours < 12) {
+            greeting.innerText = "Selamat Pagi, Prajurit Delta Force!";
+        } else if (hours < 18) {
+            greeting.innerText = "Selamat Sore, Prajurit Delta Force!";
+        } else {
+            greeting.innerText = "Selamat Malam, Prajurit Delta Force!";
+        }
+
     </script>
 </body>
 </html>
